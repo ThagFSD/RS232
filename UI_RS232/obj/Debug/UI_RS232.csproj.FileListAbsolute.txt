@@ -1,0 +1,10 @@
+C:\Users\thang\OneDrive\Máy tính\workspace\UI_RS232\UI_RS232\bin\Debug\UI_RS232.exe.config
+C:\Users\thang\OneDrive\Máy tính\workspace\UI_RS232\UI_RS232\bin\Debug\UI_RS232.exe
+C:\Users\thang\OneDrive\Máy tính\workspace\UI_RS232\UI_RS232\bin\Debug\UI_RS232.pdb
+C:\Users\thang\OneDrive\Máy tính\workspace\UI_RS232\UI_RS232\obj\Debug\UI_RS232.csproj.AssemblyReference.cache
+C:\Users\thang\OneDrive\Máy tính\workspace\UI_RS232\UI_RS232\obj\Debug\UI_RS232.UI_Form.resources
+C:\Users\thang\OneDrive\Máy tính\workspace\UI_RS232\UI_RS232\obj\Debug\UI_RS232.Properties.Resources.resources
+C:\Users\thang\OneDrive\Máy tính\workspace\UI_RS232\UI_RS232\obj\Debug\UI_RS232.csproj.GenerateResource.cache
+C:\Users\thang\OneDrive\Máy tính\workspace\UI_RS232\UI_RS232\obj\Debug\UI_RS232.csproj.CoreCompileInputs.cache
+C:\Users\thang\OneDrive\Máy tính\workspace\UI_RS232\UI_RS232\obj\Debug\UI_RS232.exe
+C:\Users\thang\OneDrive\Máy tính\workspace\UI_RS232\UI_RS232\obj\Debug\UI_RS232.pdb
