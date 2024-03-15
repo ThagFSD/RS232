@@ -71,6 +71,14 @@
             this.button_closeGate = new System.Windows.Forms.Button();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.button_resetCounterSw = new System.Windows.Forms.Button();
+            this.gbox_vehicleControl = new System.Windows.Forms.GroupBox();
+            this.button_turnRight = new System.Windows.Forms.Button();
+            this.button_stop = new System.Windows.Forms.Button();
+            this.button_backward = new System.Windows.Forms.Button();
+            this.button_forward = new System.Windows.Forms.Button();
+            this.button_turnLeft = new System.Windows.Forms.Button();
+            this.textBox_vehicleStatus = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.gbox_comSetup.SuspendLayout();
             this.gbox_ledControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBox_led3)).BeginInit();
@@ -78,6 +86,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBox_led1)).BeginInit();
             this.gbox_sendAndReceiveData.SuspendLayout();
             this.gbox_swData.SuspendLayout();
+            this.gbox_vehicleControl.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbox_comSetup
@@ -196,7 +205,7 @@
             this.gbox_ledControl.Controls.Add(this.label_led3);
             this.gbox_ledControl.Location = new System.Drawing.Point(464, 53);
             this.gbox_ledControl.Name = "gbox_ledControl";
-            this.gbox_ledControl.Size = new System.Drawing.Size(185, 201);
+            this.gbox_ledControl.Size = new System.Drawing.Size(185, 228);
             this.gbox_ledControl.TabIndex = 1;
             this.gbox_ledControl.TabStop = false;
             this.gbox_ledControl.Text = "LED Control";
@@ -359,6 +368,7 @@
             this.textBox_receiveData.ReadOnly = true;
             this.textBox_receiveData.Size = new System.Drawing.Size(92, 20);
             this.textBox_receiveData.TabIndex = 17;
+            this.textBox_receiveData.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox_receiveData.TextChanged += new System.EventHandler(this.textBox_receiveData_TextChanged);
             // 
             // textBox_sendData
@@ -371,6 +381,7 @@
             this.textBox_sendData.Name = "textBox_sendData";
             this.textBox_sendData.Size = new System.Drawing.Size(92, 20);
             this.textBox_sendData.TabIndex = 7;
+            this.textBox_sendData.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox_sendData.TextChanged += new System.EventHandler(this.textBox_sendData_TextChanged);
             // 
             // checkbox_dataSend
@@ -492,7 +503,7 @@
             this.title_label.AutoSize = true;
             this.title_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.title_label.ForeColor = System.Drawing.Color.Blue;
-            this.title_label.Location = new System.Drawing.Point(143, 18);
+            this.title_label.Location = new System.Drawing.Point(278, 9);
             this.title_label.Name = "title_label";
             this.title_label.Size = new System.Drawing.Size(371, 25);
             this.title_label.TabIndex = 4;
@@ -503,7 +514,7 @@
             this.signature_label.AutoSize = true;
             this.signature_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.signature_label.ForeColor = System.Drawing.Color.Blue;
-            this.signature_label.Location = new System.Drawing.Point(481, 265);
+            this.signature_label.Location = new System.Drawing.Point(668, 264);
             this.signature_label.Name = "signature_label";
             this.signature_label.Size = new System.Drawing.Size(143, 16);
             this.signature_label.TabIndex = 5;
@@ -546,13 +557,106 @@
             this.button_resetCounterSw.UseVisualStyleBackColor = true;
             this.button_resetCounterSw.Click += new System.EventHandler(this.button_resetCounterSw_Click);
             // 
+            // gbox_vehicleControl
+            // 
+            this.gbox_vehicleControl.Controls.Add(this.button_turnRight);
+            this.gbox_vehicleControl.Controls.Add(this.button_stop);
+            this.gbox_vehicleControl.Controls.Add(this.button_backward);
+            this.gbox_vehicleControl.Controls.Add(this.button_forward);
+            this.gbox_vehicleControl.Controls.Add(this.button_turnLeft);
+            this.gbox_vehicleControl.Controls.Add(this.textBox_vehicleStatus);
+            this.gbox_vehicleControl.Location = new System.Drawing.Point(655, 53);
+            this.gbox_vehicleControl.Name = "gbox_vehicleControl";
+            this.gbox_vehicleControl.Size = new System.Drawing.Size(200, 201);
+            this.gbox_vehicleControl.TabIndex = 10;
+            this.gbox_vehicleControl.TabStop = false;
+            this.gbox_vehicleControl.Text = "Vehicle Control";
+            // 
+            // button_turnRight
+            // 
+            this.button_turnRight.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_turnRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_turnRight.Location = new System.Drawing.Point(108, 66);
+            this.button_turnRight.Name = "button_turnRight";
+            this.button_turnRight.Size = new System.Drawing.Size(75, 31);
+            this.button_turnRight.TabIndex = 5;
+            this.button_turnRight.Text = "Turn Right";
+            this.button_turnRight.UseVisualStyleBackColor = true;
+            this.button_turnRight.Click += new System.EventHandler(this.button_turnRight_Click);
+            // 
+            // button_stop
+            // 
+            this.button_stop.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_stop.Location = new System.Drawing.Point(67, 141);
+            this.button_stop.Name = "button_stop";
+            this.button_stop.Size = new System.Drawing.Size(75, 29);
+            this.button_stop.TabIndex = 4;
+            this.button_stop.Text = "Stop";
+            this.button_stop.UseVisualStyleBackColor = true;
+            this.button_stop.Click += new System.EventHandler(this.button_stop_Click);
+            // 
+            // button_backward
+            // 
+            this.button_backward.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_backward.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_backward.Location = new System.Drawing.Point(108, 103);
+            this.button_backward.Name = "button_backward";
+            this.button_backward.Size = new System.Drawing.Size(75, 29);
+            this.button_backward.TabIndex = 3;
+            this.button_backward.Text = "Backward";
+            this.button_backward.UseVisualStyleBackColor = true;
+            this.button_backward.Click += new System.EventHandler(this.button_backward_Click);
+            // 
+            // button_forward
+            // 
+            this.button_forward.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_forward.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_forward.Location = new System.Drawing.Point(27, 103);
+            this.button_forward.Name = "button_forward";
+            this.button_forward.Size = new System.Drawing.Size(75, 29);
+            this.button_forward.TabIndex = 2;
+            this.button_forward.Text = "Forward";
+            this.button_forward.UseVisualStyleBackColor = true;
+            this.button_forward.Click += new System.EventHandler(this.button_forward_Click);
+            // 
+            // button_turnLeft
+            // 
+            this.button_turnLeft.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_turnLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_turnLeft.Location = new System.Drawing.Point(27, 66);
+            this.button_turnLeft.Name = "button_turnLeft";
+            this.button_turnLeft.Size = new System.Drawing.Size(75, 31);
+            this.button_turnLeft.TabIndex = 1;
+            this.button_turnLeft.Text = "Turn left";
+            this.button_turnLeft.UseVisualStyleBackColor = true;
+            this.button_turnLeft.Click += new System.EventHandler(this.button_turnLeft_Click);
+            // 
+            // textBox_vehicleStatus
+            // 
+            this.textBox_vehicleStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox_vehicleStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_vehicleStatus.Location = new System.Drawing.Point(27, 29);
+            this.textBox_vehicleStatus.Name = "textBox_vehicleStatus";
+            this.textBox_vehicleStatus.ReadOnly = true;
+            this.textBox_vehicleStatus.Size = new System.Drawing.Size(156, 26);
+            this.textBox_vehicleStatus.TabIndex = 0;
+            this.textBox_vehicleStatus.Text = "Vehicle status";
+            this.textBox_vehicleStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox_vehicleStatus.TextChanged += new System.EventHandler(this.textBox_vehicleStatus_TextChanged);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
             // UI_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(659, 289);
+            this.ClientSize = new System.Drawing.Size(909, 289);
+            this.Controls.Add(this.gbox_vehicleControl);
             this.Controls.Add(this.button_resetCounterSw);
             this.Controls.Add(this.button_closeGate);
             this.Controls.Add(this.button_openGate);
@@ -580,6 +684,8 @@
             this.gbox_sendAndReceiveData.PerformLayout();
             this.gbox_swData.ResumeLayout(false);
             this.gbox_swData.PerformLayout();
+            this.gbox_vehicleControl.ResumeLayout(false);
+            this.gbox_vehicleControl.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -629,6 +735,14 @@
         private System.Windows.Forms.Button button_closeGate;
         private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.Button button_resetCounterSw;
+        private System.Windows.Forms.GroupBox gbox_vehicleControl;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.Button button_turnLeft;
+        private System.Windows.Forms.TextBox textBox_vehicleStatus;
+        private System.Windows.Forms.Button button_turnRight;
+        private System.Windows.Forms.Button button_stop;
+        private System.Windows.Forms.Button button_backward;
+        private System.Windows.Forms.Button button_forward;
     }
 }
 

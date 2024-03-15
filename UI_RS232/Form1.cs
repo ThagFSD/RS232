@@ -107,6 +107,7 @@ namespace UI_RS232
                         serialPort1.Open(); //Mo cong COM
                         textbox_currentState.BackColor = Color.Green; textbox_currentState.ForeColor = Color.Black; // Chuyen mau cua textbox trang thai sang mau xanh
                         textbox_currentState.Text = "Connected"; //thay doi ki tu thanh "connected" tren textbox trang thai 
+                        textBox_vehicleStatus.BackColor = Color.Green; textbox_currentState.ForeColor = Color.Black;
                         button_disconnect.Enabled = true; //Kich hoat nut disconnect
                         checkbox_dataSend.Enabled = true; //Kich hoat nut gui data
                         dropdownlist_comPort.Enabled = false; //Khoa chon cong Com
@@ -131,6 +132,8 @@ namespace UI_RS232
                     serialPort1.Close(); //Dong cong COM
                     textbox_currentState.BackColor = Color.Red; textbox_currentState.ForeColor = Color.Black; //Chuyen mau cua textbox trang thai ve lai mau do
                     textbox_currentState.Text = "Disconnected"; //Thay doi lai chuoi "Disconnected" ban dau
+                    textBox_vehicleStatus.Text = "Vehicle Status";
+                    textBox_vehicleStatus.BackColor = Color.White;
                     checkbox_dataSend.Checked = false; //Khoa nut chon nhap data
                     checkbox_dataSend.Enabled = false; //Khoa nut gui data
                     dropdownlist_comPort.Enabled = true; //Kich hoat lai chuc nang chon cong COM
@@ -235,7 +238,7 @@ namespace UI_RS232
             {
                 if (serialPort1.IsOpen) //Truong hop cong COM da ket noi
                 {
-                    TransmitData = "@le1_on&";//Gan bien gui data bat LED1
+                    TransmitData = "+Led1 on.";//Gan bien gui data bat LED1
                     send_Data(TransmitData); //Gui data                                                                     
                 }
                 else //Truong hop cong COM chua ket noi
@@ -256,7 +259,7 @@ namespace UI_RS232
             {
                 if (serialPort1.IsOpen) //Truong hop cong COM da ket noi
                 {
-                    TransmitData = "@le1_of&"; //Gan bien gui data tat LED1
+                    TransmitData = "+Led1 off."; //Gan bien gui data tat LED1
                     send_Data(TransmitData); //Gui data 
                 }
                 else //Truong hop cong COM chua ket noi
@@ -278,7 +281,7 @@ namespace UI_RS232
             {
                 if (serialPort1.IsOpen) //Truong hop cong COM da ket noi
                 {
-                    TransmitData = "@le2_on&"; //Gan bien gui data bat LED2
+                    TransmitData = "+Led2 on."; //Gan bien gui data bat LED2
                     send_Data(TransmitData); //Gui data
                 }
                 else //Truong hop cong COM chua ket noi
@@ -298,7 +301,7 @@ namespace UI_RS232
             {
                 if (serialPort1.IsOpen) //Truong hop cong COM da ket noi
                 {
-                    TransmitData = "@le2_of&"; //Gan bien gui data tat LED2
+                    TransmitData = "+Led2 off."; //Gan bien gui data tat LED2
                     send_Data(TransmitData); //Gui data
                 }
                 else //Truong hop cong COM chua ket noi
@@ -320,7 +323,7 @@ namespace UI_RS232
             {
                 if (serialPort1.IsOpen) //Truong hop cong COM da ket noi
                 {
-                    TransmitData = "@le3_on&"; //Gan bien gui data bat LED3
+                    TransmitData = "+Led3 on."; //Gan bien gui data bat LED3
                     send_Data(TransmitData); //Gui data
                 }
                 else
@@ -340,7 +343,7 @@ namespace UI_RS232
             {
                 if (serialPort1.IsOpen) //Truong hop cong COM da ket noi
                 {
-                    TransmitData = "@le3_of&"; //Gan bien gui data bat LED3
+                    TransmitData = "+Led3 off."; //Gan bien gui data bat LED3
                     send_Data(TransmitData); //Gui data
                 }
                 else
@@ -360,7 +363,7 @@ namespace UI_RS232
         {
             CheckForIllegalCrossThreadCalls = false; //Kiem tra xung dot data
             //ReceiveData = serialPort1.ReadExisting();
-            ReceiveData = serialPort1.ReadTo("&"); //Data nhan co ki tu cuoi cung la "&"
+            ReceiveData = serialPort1.ReadTo("."); //Data nhan co ki tu cuoi cung la "."
             this.Invoke(new EventHandler(DoUpDate)); //Khai trien ham DoUpDate (de dang chinh sua neu co thay doi)
         }
         //
@@ -368,43 +371,59 @@ namespace UI_RS232
         //
         private void DoUpDate(object sender, EventArgs e) //Ham DoUpDate
         {
-            textBox_receiveData.Text = ReceiveData.ToString() + "&"; //textbox nhan Data ki tu cuoi se la &
+            textBox_receiveData.Text = ReceiveData.ToString() + "."; //textbox nhan Data ki tu cuoi se la &
             //Cac truong hop du lieu nhan duoc
             switch (ReceiveData)
             {
-                case "@SA": //Nhan duoc chuoi 
+                case "+Switch A.": //Nhan duoc chuoi 
                     countsw1++; //Tang bien dem sw1
                     textBox_sw1.Text = countsw1.ToString(); //Gan bien dem vao textboxsw1
                     //ReceiveData = string.Empty; //Ko su dung
                     break;
-                case "@SB": //Nhan duoc chuoi 
+                case "+Swith B.": //Nhan duoc chuoi 
                     countsw2++; //Tang bien dem sw2
                     textBox_sw2.Text = countsw2.ToString(); //Gan bien dem vao textboxsw2
                     //ReceiveData = string.Empty; //Ko su dung 
                     break;
-                case "@SC": //Nhan duoc chuoi 
+                case "+Switch C.": //Nhan duoc chuoi 
                     countsw3++; //Tang bien dem sw3
                     textBox_sw3.Text = countsw3.ToString(); //Gan bien dem vao textboxsw3
                     //ReceiveData = string.Empty; //Ko su dung
                     break;
-                case "@Lle1_on": //Nhan duoc chuoi 
+                case "+Led1 on.": //Nhan duoc chuoi 
                     picBox_led1.Image = UI_RS232.Properties.Resources.densang__1_; //Thay doi hinh anh thanh led sang cua led1
                     break;
-                case "@Lle1_of": //Nhan duoc chuoi 
+                case "+Led1 off.": //Nhan duoc chuoi 
                     picBox_led1.Image = UI_RS232.Properties.Resources.dentat__1_; //Thay doi hinh anh thanh led tat cua led1
                     break;
-                case "@Lle2_on": //Nhan duoc chuoi 
+                case "+Led2 on.": //Nhan duoc chuoi 
                     picBox_led2.Image = UI_RS232.Properties.Resources.densang__1_; //Thay doi hinh anh thanh led sang cua led2
                     break;
-                case "@Lle2_of": //Nhan duoc chuoi 
+                case "+Led2 off.": //Nhan duoc chuoi 
                     picBox_led2.Image = UI_RS232.Properties.Resources.dentat__1_; //Thay doi hinh anh thanh led tat cua led2
                     break;
-                case "@Lle3_on": //Nhan duoc chuoi 
+                case "+Led3 on.": //Nhan duoc chuoi 
                     picBox_led3.Image = UI_RS232.Properties.Resources.densang__1_; //Thay doi hinh anh thanh led sang cua led3
                     break;
-                case "@Lle3_of": //Nhan duoc chuoi 
+                case "+Led3 off.": //Nhan duoc chuoi 
                     picBox_led3.Image = UI_RS232.Properties.Resources.dentat__1_;//Thay doi hinh anh thanh led tat cua led3
                     break;
+                case "Turning left.": //Nhan duoc chuoi 
+                    textBox_vehicleStatus.Text = "Turn left";
+                    break;
+                case "Turning right.": //Nhan duoc chuoi 
+                    textBox_vehicleStatus.Text = "Turn right";
+                    break;
+                case "MV forward.": //Nhan duoc chuoi 
+                    textBox_vehicleStatus.Text = "Forward";
+                    break;
+                case "MV backward.": //Nhan duoc chuoi 
+                    textBox_vehicleStatus.Text = "Backward";
+                    break;
+                case "Stop.": //Nhan duoc chuoi 
+                    textBox_vehicleStatus.Text = "Stop";
+                    break;
+
                 default:
                     //Gia tri mac dinh cua cac bien 
                     picBox_led1.Image = picBox_led2.Image = picBox_led3.Image = UI_RS232.Properties.Resources.dentat__1_;
@@ -412,6 +431,120 @@ namespace UI_RS232
                     textBox_sw1.Text = textBox_sw2.Text = textBox_sw3.Text = "0";
                     break;
             }
+
+        }
+        //
+        //Vehicle control
+        //
+        private void button_turnLeft_Click(object sender, EventArgs e) // Turn left 
+        {
+            try
+            {
+                if (serialPort1.IsOpen) //Truong hop cong COM da ket noi
+                {
+                    TransmitData = "+Turn left."; //Gan bien gui data dieu khien motor trai
+                    send_Data(TransmitData); //Gui data
+                   //textBox_vehicleStatus.Text = "Turn left";
+                }
+                else
+                {
+                    MessageBox.Show("Please connect to a COM Port to use this !", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); //He thong nhac nho ket noi cong COM
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something went wrong, please try again !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); //He thong dua ra canh bao
+            }
+        }
+
+        private void button_turnRight_Click(object sender, EventArgs e) // Turn right
+        {
+            try
+            {
+                if (serialPort1.IsOpen) //Truong hop cong COM da ket noi
+                {
+                    TransmitData = "+Turn right."; //Gan bien gui data dieu khien motor phai
+                    send_Data(TransmitData); //Gui data
+                    //textBox_vehicleStatus.Text = "Turn right";
+                }
+                else
+                {
+                    MessageBox.Show("Please connect to a COM Port to use this !", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); //He thong nhac nho ket noi cong COM
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something went wrong, please try again !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); //He thong dua ra canh bao
+            }
+        }
+
+        private void button_forward_Click(object sender, EventArgs e) // Forward
+        {
+            try
+            {
+                if (serialPort1.IsOpen) //Truong hop cong COM da ket noi
+                {
+                    TransmitData = "+Forward."; //Gan bien gui data dieu khien 2 motor quay theo chieu kim dong ho 
+                    send_Data(TransmitData); //Gui data
+                    //textBox_vehicleStatus.Text = "Forward";
+                }
+                else
+                {
+                    MessageBox.Show("Please connect to a COM Port to use this !", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); //He thong nhac nho ket noi cong COM
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something went wrong, please try again !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); //He thong dua ra canh bao
+            }
+        }
+
+        private void button_backward_Click(object sender, EventArgs e) // Backward
+        {
+            try
+            {
+                if (serialPort1.IsOpen) //Truong hop cong COM da ket noi
+                {
+                    TransmitData = "+Backward."; //Gan bien gui data dieu khien 2 motor quay nguoc chieu kim dong ho  
+                    send_Data(TransmitData); //Gui data
+                    //textBox_vehicleStatus.Text = "Backward";
+                }
+                else
+                {
+                    MessageBox.Show("Please connect to a COM Port to use this !", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); //He thong nhac nho ket noi cong COM
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something went wrong, please try again !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); //He thong dua ra canh bao
+            }
+        }
+
+        private void button_stop_Click(object sender, EventArgs e) // Stop 
+        {
+            try
+            {
+                if (serialPort1.IsOpen) //Truong hop cong COM da ket noi
+                {
+                    TransmitData = "+Stop."; //Gan bien gui data dieu khien dung 2 motor
+                    send_Data(TransmitData); //Gui data
+                    //textBox_vehicleStatus.Text = "Stop";
+                }
+                else
+                {
+                    MessageBox.Show("Please connect to a COM Port to use this !", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); //He thong nhac nho ket noi cong COM
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something went wrong, please try again !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); //He thong dua ra canh bao
+            }
+        }
+        //
+        //Text box vehicle status
+        //
+        private void textBox_vehicleStatus_TextChanged(object sender, EventArgs e)
+        {
 
         }
         //

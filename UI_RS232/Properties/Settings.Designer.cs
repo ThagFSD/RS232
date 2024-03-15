@@ -23,7 +23,7 @@ namespace UI_RS232.Properties
         {
             get
             {
-                return defaultInstance;
+                return defaultInstance; 
             }
         }
     }
